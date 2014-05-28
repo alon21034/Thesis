@@ -1,0 +1,137 @@
+
+\documentclass[12pt]{report}
+
+\usepackage{CJKutf8}
+\usepackage{setspace}
+\usepackage{CJK}
+%\usepackage{pinyin}
+
+%==
+%\usepackage[active]{srcltx}
+\usepackage[english]{babel}
+\usepackage{amssymb,amsfonts,amsmath}
+\usepackage{amsthm}
+%\usepackage{fontspec}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{t1enc}
+\usepackage{comment} 
+\usepackage{makeidx}
+\usepackage{xspace}
+%==
+\usepackage[a4paper,left=3cm,top=3cm,right=3cm,bottom=3cm,nohead]{geometry}
+\setlength{\baselineskip}{10pt}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
+\input{def}
+
+\doublespacing
+\pagestyle{plain}
+\begin{document}
+\onehalfspacing
+%\renewcommand{\baselinestretch}{1} 
+
+\begin{titlepage}
+\begin{center}
+
+\begin{CJK}{UTF8}{bkai}
+\Large{{國立臺灣大學電機資訊學院電機工程學系\\碩士論文}}\\
+\large{{Department of Electrical Engineering}}\\
+\large{College of Electrical Engineering and Computer Science}\\
+\Large{{National Taiwan University}}\\
+\Large{{Master Thesis}}\\
+
+\hspace*{1cm}~\\
+\hspace*{1cm}~\\
+\hspace*{1cm}~\\
+\Large{平行化最短格向量問題之極速列舉演算法\\
+Extreme Enumeration on GPU and in Clouds }\\
+\hspace*{1cm}~\\
+\hspace*{1cm}~\\
+\hspace*{1cm}~\\
+
+\Large{郭博鈞\\Po-Chun Kuo}\\
+\hspace*{1cm}~\\
+\hspace*{1cm}~\\
+
+\Large{指導教授：鄭振牟 博士\\Advisor: Chen-Mou Cheng, Ph.D.}\\
+\hspace*{1cm}~\\
+\hspace*{1cm}~\\
+
+
+\Large{中華民國 100 年 6 月\\June, 2010}\\
+
+\end{CJK}
+\end{center}
+\end{titlepage}
+
+
+\clearpage
+
+%\addcontentsline{toc}{chapter}{Abstract}
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+\doublespacing
+\begin{abstract}
+  The complexity of SVP (Shortest Vector Problem) is directly related
+  to the security of NTRU and the provable level of security of many
+  recently proposed lattice-based cryptosystems.
+
+  We integrate several recent algorithmic improvements for solving SVP
+  and take first, second, and third place repectively at dimension 120, 116, 
+  and 114 on the SVP Challenge Hall of Fame. 
+
+  Specifically, our improvements to the recent Extreme Pruning in
+  enumeration approach include a better set of pruning rules, code to
+  take advantage of Clouds of commodity PCs (via the MapReduce
+  framework), and the use of NVIDIA's Graphics Processing Units
+  (GPUs). 
+%
+  We may now reasonably estimate the cost of a wide range of SVPs in
+  U.S.\ dollars, as rent paid to cloud-computing service providers,
+  which is arguably a simpler and more practical measure of
+  complexity. 
+
+  Our implementation allows us to find a short vector at dimension 116 and 114
+  using 8 nVidia video cards in less than two days. As shown the price of security level,
+  we spend 2300 U.S. dollar for renting machines from Amazon and solve SVP with dimension 120.
+
+
+\vspace*{3em}
+{\bf Keywords:} \emph{Lattice, lattice-based cryptography, Shortest Vector Problem, GPU, Cloud
+Computing, Enumeration, Extreme Pruning}
+
+\end{abstract}
+\input{abstract}
+\clearpage
+
+
+
+
+\tableofcontents
+\listoffigures
+\listoftables
+\clearpage
+
+\doublespacing
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\setcounter{tocdepth}{1}
+
+
+
+\input{intro}   
+\input{intro}   
+
+\printindex
+
+
+\bibliographystyle{alpha}
+\bibliography{cloudgpuenum}
+
+
+\end{document}
