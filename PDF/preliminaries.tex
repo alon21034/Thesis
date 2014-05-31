@@ -40,6 +40,10 @@ However, in March 2011 attackers compromised RSA's back-end database of seeds, w
 
 \subsubsection{YubiKey}
 
+The YubiKey is another authentication hardware token, which shaped like a USB flash drive. It connects to a USB port and identifies itself as a USB keyboard, which allows it to be compatiable to most of computers or laptops with system's native driver. The basic finction of the YubiKey is to generate \emph{One-Time Passwords}. 
+
+When users want to authenticating to a network service by YubiKey, after insert YubiKey into the USB port, users have to touch the YubiKey's OTP generation button. The YubiKey will help users typing a string of printable characters-the concatenation of a fixed \emph{identity string} (replacing the username) and a one-time password (replacingthe password). Then the verify server will check whether the OTP is valid or not, and check the timestamp to resist to the relay-attak.
+
 \subsection{Mobile-device-based scheme}
 
 \subsubsection{Google 2-step}
