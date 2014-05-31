@@ -1,0 +1,49 @@
+\begin{CJK}{Bg5}{bsmi}
+
+%---------------------------------------------
+%	Chapter System Architecture
+%---------------------------------------------
+
+\chapter{Architecture of This System}
+
+\section{User Flow}
+
+\subsubsection{Register Phase}
+
+	1. 	User start the initialzization process on his mobile device
+		i.  set PIN code
+		ii. generate key pair
+	2.	User send a registration request to server from browser
+
+	3.	User send his id and public key (and other required credentials) to server.
+
+\subsubsection{Login Phase}
+
+	1. User send a login requesr to server
+
+	2. Server return a nonce ({server info || randombits}) back to browser
+
+	3. The brower pass this nonce to reader application
+		i.	The reader start to scan NFC cards.
+		ii.	Timeout: 30 seconds
+
+	4. Mobile device ask user to input the correct PIN code and confirm the server information
+		i.	Enable card emulation mode right after receive correct PIN code
+
+	5. Mobile device get nonce from reader application
+		i.	mobile device signed the nonce with correspond private key.
+		ii.	mobile device return the signed-nonce back to reader application
+
+	6. Reader application return signed-nonce back to server.
+
+\subsubsection{Verification Phase}
+
+	1. Server find the corresponding public key accordding to id.
+
+	2. Verify the signature.
+
+	3. Return the result.
+
+\section{Implementation}
+
+\end{CJK}
