@@ -78,7 +78,7 @@ In this section, I'll seperate the autentication process into three parts: \emph
 
 \subsection{Existing Website}
 
-For existing website, it is difficult for them to integrate this scheme with their origin users. Therefore, they can adopt the OpenID protocol to help. Build a verificaiton server with this new scheme and use it to be the \emph{Reliable Party} in OpenID protocol.
+For existing website, it is difficult for them to integrate this scheme with their origin users. Therefore, they can adopt the OpenID protocol to help. Build a verificaiton server with this new scheme and use it to be the \emph{Relying Party} in OpenID protocol.
 
 Take Bitcucket.org as an example, I modified the verificaiton server in section~\ref{sec:future-website} to be an \emph{openid-provider}, that is, to support OpenID feature. When a user need to login to Bitbucket, he have to switch to openid-login mode, enter the server url. Then the authentication process is as same as I described above. 
 
