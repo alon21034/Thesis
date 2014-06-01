@@ -10,6 +10,10 @@ In this chapter, I'll try to explain my design more detailed. First section is t
 
 \section{Overview}
 
+Let us recall the autehentication process about password-based scheme. As the fig\ref{fig:password-based-flow} shows, the client give his username and password to server (password is encrypted), and the server checks whether it is valid according to its database. Fig\ref{fig:my-scheme-flow} is the authentication process of my scheme. Because the verificaiton server should be a passive element, client should send a login request first. After receive a login request, the server send a random nonce back to client. Client generate a signature for this nonce and return to server. Server, then, use the public key to check whether the client is valid or not.
+
+This is how I used Digital Signature Algorithms in an authentication process. The advantages is that the data communicated between client and server do not need to be encrypted. The only \emph{secret} is private key, which is stored in client's storage. The disavantage of my scheme is that users will need a device to help them creating signature and manage their public keys. Therefore, the use of mobile device is the core of this scheme, bring us a high usability.
+
 \begin{figure}
 \centering
 \subfigure[password-based scheme]{
