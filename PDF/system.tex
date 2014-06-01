@@ -40,12 +40,14 @@ In this section, I'll seperate the autentication process into three parts: \emph
 
 \subsubsection{Register Phase}
 
-	1. 	User start the initialzization process on his mobile device
-		i.  set PIN code
-		ii. generate key pair
-	2.	User send a registration request to server from browser
-
-	3.	User send his id and public key (and other required credentials) to server.
+\begin{enumerate}
+\item Start the initialzization process on his mobile device, that is, set PIN code and generate key pair.
+\item User send a registration request to the verification server.
+\item Server return the server information to user and pass it to mobile device via reader applicaiton.
+\item Mobile device saved the server information and the private key together, and return the device UUID and corresponding public key back to user.
+\item User send the id and public key (and other required credentials required by server) to server.
+\item Server saved UUID and public key into its database.
+\end{enumerate}
 
 \subsubsection{Login Phase}
 
