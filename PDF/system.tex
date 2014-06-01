@@ -51,30 +51,25 @@ In this section, I'll seperate the autentication process into three parts: \emph
 
 \subsubsection{Login Phase}
 
-	1. User send a login requesr to server
-
-	2. Server return a nonce ({server info || randombits}) back to browser
-
-	3. The brower pass this nonce to reader application
-		i.	The reader start to scan NFC cards.
-		ii.	Timeout: 30 seconds
-
-	4. Mobile device ask user to input the correct PIN code and confirm the server information
-		i.	Enable card emulation mode right after receive correct PIN code
-
-	5. Mobile device get nonce from reader application
-		i.	mobile device signed the nonce with correspond private key.
-		ii.	mobile device return the signed-nonce back to reader application
-
-	6. Reader application return signed-nonce back to server.
+\begin{enumerate}
+\item User send a login request to server.
+\item Server return a nonce ([server info || random bits]) back to client.
+\item The NFC reader start to scan cards as soon as it receive the nonce.
+\item User execute the card emulation application on mobile device and enter the PIN code. If the PIN code correct, mobile device enable the HCE mode.
+\item Reader application send nonce to mobile device.
+\item Mobile device retrieve the server info from nonce, show it on the screen and ask for user's confirmation.
+\item Mobile device signed the nonce with corresponding private key.
+\item Mobile device pass its UUID and signed-nonce to reader.
+\item Client pass these parameters to server.
+\end{enumerate}
 
 \subsubsection{Verification Phase}
 
-	1. Server find the corresponding public key accordding to id.
-
-	2. Verify the signature.
-
-	3. Return the result.
+\begin{enumerate}
+\item Server retrieve the corresponding public key according to the UUID.
+\item Verify the signature with the public key.
+\item Return the verification result back to cient.
+\end{enumerate}
 
 \section{Scenario}
 
