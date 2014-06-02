@@ -87,7 +87,7 @@ The last one is easy-recovery-from-loss, there are lots of approach can recovery
 
 \section{Deployment Ability Analysis}
 
-The deployment ability is also an important thing which is need to be considered, especially in designing an authentication system. A system with high usability means it is friendly to users; a system with high deployment ability means it is friendly to the system provider or, more precise, the developers. The following paragraph states the properties I used to estimate a system's deployment ability. 
+The deployment ability is also an important thing which is need to be considered, especially in designing an authentication system. A system with high usability means it is friendly to users; a system with high deployment ability means it is friendly to the system provider or, more precise, the developers. The following paragraph states the properties I used to estimate a system's deployment ability.
 
 \subsection{Criterias}
 
@@ -108,5 +108,11 @@ From the viewpoint of verification server, the scheme is compatable with the tex
 Users don't have to change anything to support this scheme. 
 
 \subsection{Analysis}
+
+For accessible ability, users will be asked to enter PIN code on mobile device, swipe it to NFC reader and users need to confirm the correctness of server info to ensure the security. Therefore, in my opinion, my scheme doesn't have a good performance of accessible ability.
+
+The total cost of my scheme is the mobile device. The verification server does not need any other equipment. However, because of the high popularity of mobile device, I think it has a not bad performance of user-cost.
+
+It is obvious that my scheme is server-compatable. We can save UUID and public key with text-based format easily. For browser-compatable, users will need a extra reader application rather than password-based scheme, but thwy won't need to change too many things to support this scheme. Thus I think my scheme is server-compatable and a little browser-compatable. 
 
 \end{CJK}
