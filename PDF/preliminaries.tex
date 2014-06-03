@@ -5,7 +5,7 @@
 %---------------------------------------------
 
 \chapter{Preliminaries}
-% 簡介這個chapter要講些什麼
+% 簡介這個chapter要講些什麼, (我寫到一半忽然覺得我好像看不太懂你這章在寫什麼XD 記得重寫)
 In this chapter, I introduce the concept of the digital signature algorithm, which is one the implementations of authentication system.
 Besides, I describe three authentication systems, including Android HCE feature, Near Field Communication, and OpenID.
 For each system I would focus on the architecture and the problems to be improved.
@@ -22,11 +22,12 @@ A digital signature scheme typically consists of three algorithms:
 \item[*] A signature verifying algorithm that, given a message, public key and a signature, either accepts or rejects the message's claim to authenticity.
 \end{enumerate}
 
-Digital signatures can be used to authenticate the source of messages. When ownership of a digital signature secret key is bound to a specific user, a valid signature shows that the message was sent by that user. I take the advantage of this authentication property to replace password. In password-based authentication scheme, the ownership of password is bound to a specific user. 
+Digital signatures can be used to authenticate the source of messages. When ownership of a digital signature secret key is bound to a specific user, a valid signature shows that the message was sent by that user. I take the advantage of this authentication property to replace password. In the password-based authentication scheme, the ownership of password is bound to a specific user. 
 
 \section{Android HCE Feature}
 
-Many Android devices which offer NFC functionality also support card emulation feature. In most cases, this feature is achieved by a seperate chip, called \emph{secure element}. The Android system is only provide an interface. Therefore, no Android application can involved in the transaction between secure element and the reader. After the transaction complete, an applications can query the secure element directly to get transaction status and notify users. This is why Tte original NFC card emulaiton functionality also called hardware card emulation.
+Many Android devices which offer near field communication (NFC) functionality also support card emulation feature. In most cases, this feature is achieved by a seperate chip, called \emph{secure element}. The Android system is only provide an interface. Therefore, no Android application can involved in the transaction between secure element and the reader. After the transaction completes, an applications can query the secure element directly to get transaction status and notify users. This is why Tte original NFC card emulaiton functionality also called hardware card emulation.
+% 什麼是Tte?? 文章中第一次縮寫要加上全名，之後就可以只寫縮寫
 
 Because this mechanism needs an extra hardware in devices, most of Android application developers cannot take advantages of card emulation feature. To solve this, Android 4.4 provides an additional method of card emulation, which is not invoved with secure element, called \emph{host-base card emulation}. This method allows Android application can communicate with NFC reader directly, not 
 
