@@ -6,11 +6,11 @@
 
 \chapter{Preliminaries}
 
+[TODO intro of preliminaries]
+
 \section{Digital Signature Algorithm}
 
-Digital signature is a mathematical scheme for demonstrating the authenticity of a digital message or document. 
-
-A digital signature scheme typically consists of three algorithms:
+Digital signature is a mathematical scheme for demonstrating the authenticity of a digital message or document. A digital signature scheme typically consists of three algorithms:
 
 \begin{enumerate}
 \item[*] A key generation algorithm that selects a private key uniformly at random from a set of possible private keys. The algorithm outputs the private key and a corresponding public key.
@@ -18,16 +18,17 @@ A digital signature scheme typically consists of three algorithms:
 \item[*] A signature verifying algorithm that, given a message, public key and a signature, either accepts or rejects the message's claim to authenticity.
 \end{enumerate}
 
-Digital signatures can be used to authenticate the source of messages. When ownership of a digital signature secret key is bound to a specific user, a valid signature shows that the message was sent by that user. I take the advantage of this authentication property to replace password. In password-based authentication scheme, the ownership of password is bound to a specific user. 
+Digital signatures can be used to authenticate the source of messages. When ownership of a digital signature secret key is bound to a specific user, a valid signature shows that the message was sent by that user. I take the advantage of this authentication property to replace password. In the password-based authentication scheme, the ownership of password is bound to a specific user. 
 
 \section{Android HCE Feature}
 
-Many Android devices which offer NFC functionality also support card emulation feature. In most cases, this feature is achieved by a seperate chip, called \emph{secure element}. The Android system is only provide an interface. Therefore, no Android application can involved in the transaction between secure element and the reader. After the transaction complete, an applications can query the secure element directly to get transaction status and notify users. This is why Tte original NFC card emulaiton functionality also called hardware card emulation.
+Many Android devices which offer NFC functionality also support card emulation feature. In most cases, this feature is achieved by a seperate chip, called \emph{secure element}. The Android system is only provide an interface. Therefore, no Android application can involved in the transaction between secure element and the reader. After the transaction complete, an applications can query the secure element directly to get transaction status and notify users. This is why the original NFC card emulaiton functionality also called hardware card emulation.
 
 Because this mechanism needs an extra hardware in devices, most of Android application developers cannot take advantages of card emulation feature. To solve this, Android 4.4 provides an additional method of card emulation, which is not invoved with secure element, called \emph{host-base card emulation}. This method allows Android application can communicate with NFC reader directly, not 
 
 \section{Near Field Communication}
 
+[TODO NFC intro]
 \begin{comment}
 should put the comparision with bluetooth
 \end{comment}
