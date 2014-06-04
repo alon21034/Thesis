@@ -4,50 +4,55 @@
 %	Chapter Conclusion
 %---------------------------------------------
 
+\chapter{Compare to Other Schemes}
+
+In this section, I'll compare my scheme to other related schemes introduced in chapter 2. For the comparison of security, because the threat model is different in different scheme. Therefore, I can only select some general criteria to do a brief analysis. For the estimation in usability, I take the original password-based scheme as a standard. When the estimation in one criteria of a scheme is better than password-based scheme, then I'll note it a + sign, or note it as - on the contratry. If it is as good as password-scheme in my opinion, I'll note is as =. For the comparison of deployment ability, the estimating of these properities are either yes or no, so I use O or X to express.
+
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+                                     & pwd & my scheme & SecurID & YubiKey & 2-step & Smard-card \\ \hline
+physical observation       & X   & O         & O       & O       & O       & O          \\ \hline
+targeted Impersonation     & X   & O         & O       & O       & O       & O          \\ \hline
+guessing attack            & X   & O         & O       & O       & O       & O          \\ \hline
+internal observation       & X   & O         & O       & O       & X       & O          \\ \hline
+leaks from other verifiers & X   & O         & O       & O       & O       & O          \\ \hline
+phishing                   & X   & O         & O       & O       & O       & O          \\ \hline
+\end{tabular}
+\caption{Comparison of Seurity}
+\end{table}
+
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+                   & pwd & my scheme & SecurID & YubiKey & Google 2-step & Smard-card \\ \hline
+memorywise-effort  & =   & +         & +       & +       & =             & +          \\ \hline
+scalable ability   & =   & +         & -       & =       & =             & -          \\ \hline
+nothing to carry   & =   & -         & -       & -       & -             & -          \\ \hline
+Physical-effort    & =   & =         & =       & =       & =             & =          \\ \hline
+Efficiency         & =   & =         & =       & =       & -             & =          \\ \hline
+Correctness        & =   & =         & =       & =       & =             & =          \\ \hline
+recovery-from-loss & =   & -         & -       & -       & =             & -          \\ \hline
+\end{tabular}
+\caption{Comparison of Usability}
+\end{table}
+
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+                   & pwd & my scheme & SecurID & YubiKey & Google 2-step & Smard-card \\ \hline
+Accessible         & O   & X         & X       & O       & X             & X          \\ \hline
+User-cost          & O   & X         & X       & X       & X             & X          \\ \hline
+Server-compatable  & O   & O         & X       & X       & X             & X          \\ \hline
+Browser-compatable & O   & O         & O       & O       & X             & O          \\ \hline
+\end{tabular}
+\caption{Comparison of Deployment Ability}
+\end{table}
+
 \chapter{Conclusion}
 
-\section{Compare to Other Schemes}
+In my research, I propose a user-friendly authentication solution. W
 
-\begin{table}[h]
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-                   & pwd & my scheme & SecurID & YubiKey & Google 2-step & Smard-card \\ \hline
-memorywise-effort  & =   &           &         &         &               &            \\ \hline
-scalable ability   & =   &           &         &         &               &            \\ \hline
-nothing to carry   & =   &           &         &         &               &            \\ \hline
-Physical-effort    & =   &           &         &         &               &            \\ \hline
-Efficiency         & =   &           &         &         &               &            \\ \hline
-Correctness        & =   &           &         &         &               &            \\ \hline
-recovery-from-loss & =   &           &         &         &               &            \\ \hline
-\end{tabular}
-\end{table}
-
-\begin{table}[h]
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-                   & pwd & my scheme & SecurID & YubiKey & Google 2-step & Smard-card \\ \hline
-memorywise-effort  & =   &           &         &         &               &            \\ \hline
-scalable ability   & =   &           &         &         &               &            \\ \hline
-nothing to carry   & =   &           &         &         &               &            \\ \hline
-Physical-effort    & =   &           &         &         &               &            \\ \hline
-Efficiency         & =   &           &         &         &               &            \\ \hline
-Correctness        & =   &           &         &         &               &            \\ \hline
-recovery-from-loss & =   &           &         &         &               &            \\ \hline
-\end{tabular}
-\end{table}
-
-\begin{table}[h]
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-                   & pwd & my scheme & SecurID & YubiKey & Google 2-step & Smard-card \\ \hline
-memorywise-effort  & =   &           &         &         &               &            \\ \hline
-scalable ability   & =   &           &         &         &               &            \\ \hline
-nothing to carry   & =   &           &         &         &               &            \\ \hline
-Physical-effort    & =   &           &         &         &               &            \\ \hline
-Efficiency         & =   &           &         &         &               &            \\ \hline
-Correctness        & =   &           &         &         &               &            \\ \hline
-recovery-from-loss & =   &           &         &         &               &            \\ \hline
-\end{tabular}
-\end{table}
+\subsubsection{Future Work}
 
 \end{CJK}

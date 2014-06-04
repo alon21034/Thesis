@@ -16,6 +16,10 @@ In the section of usability analysis and deployment ability analysis, I'll intro
 
 \subsubsection{Secure Object}
 
+\begin{enumerate}
+\item[*] Protect user's private credentials.
+\end{enumerate}
+
 In my system, the most important goal is to protect user's privacy, that is, attackers cannot pretend to be the real user. To achieve the goal, we cannot leak any information about users' private key. Futhermore, attackers shouldn't get nonce and signed-nonce at same time.
 
 \begin{comment}
@@ -35,15 +39,31 @@ There are 5 components in this scheme, and 4 possible channels for data transfer
 \label{fig:compose-element}
 \end{figure}
 
-The browser and the reader applicaiton are usually on the same PC, so we can view these two parts as a same component. However, our PC is vulnerable due to spreading virus and malicious program. Our keyboard may be logger, nevertheless, the communication channels between client and either mobile device or server is not secure. To be clearer, even though I adopt HTTPS for the network channel, the data which transfered on these channel may be sniffed or even modified. The last component is the server side. In my assumption, the server is secure enough, attackers can only read the data saved in the databased but cannot modified.
+The browser and the reader applicaiton are usually on the same PC, so we can view these two parts as a same component. Our PC is vulnerable due to spreading virus and malicious program, and sometimes we have to login to some website on a public computer. Our keyboard may be logger. In conclusion, the communication channels between client and either mobile device or server is not secure. Even though I adopt HTTPS for the network channel, the data which transfered on these channel may be sniffed or even modified. The last component is the server side. In my assumption, the server is secure enough, attackers can only read the data saved in the databased but cannot modified them.
+
+Finally, in order to anaysis the threats, we have to assume that the registeration process is secure.
+
+To sum up, my assumption in trust bundary can be arranged as following:
+\begin{enumerate}
+\item[*] Trusted mobile device with secure storage.
+\item[*] The data received during the register phase are all correct.
+\item[*] Insecure NFC channel: data might be sniffed.
+\item[*] Untrusted browser and NFC reader: data might be sniffed or modified.
+\item[*] Insecure internet channel: data changed in plaintext.
+\item[*] Secure server and its database: data saved in the database can only be stolen, but can not be modfied.
+\end{enumerate}
 
 \subsubsection{Threats}
 
-In this paragraph, I'll discuss the possible threats and weaknesses that could affect my system under this assumption. Futhermore, I'll compare my scehem to the original password-based scheme, to see the improvement of my new design.
+In this paragraph, I'll discuss the possible threats and weaknesses that could affect my system under this assumption. Futhermore, I'll compare my scheme to the original password-based scheme, to show the improvement of my new design.
 
-First, due to the mobile device is secure, so it is impossible of any attacks on mobile device. Then we discuss the attack on client side (browser and reader applicaiton). For password-based scheme, malicious people can easily get password by any physical attack such as key-logged attack. The network communication is insecure, and we can not trust the server's certificate, so this authentication system will under phishing attack and the Man-In-The-Middle attack with password-based scheme. Next, consider an authetication system with my scheme, all attacks to client side is useless, its because these attack can only get signed-nonce or public key, which do not leak any information about the private key. Unfortunately, my scheme has no resistance to phishing attack and MITM attack, because of the insecure network channel. However, there is another advantage of my scheme. Even though there is an attacker get the authority in one authentication process, the attacker will not be able to use this information on another authentication process. Unlike password-based scheme, if a attacker get your password, then he can pretend to be the real user any time.
+First, due to the mobile device is secure, so it is impossible of any attacks on mobile device. Then we considered the attacks on the client side (browser and reader applicaiton). For password-based scheme, malicious people can easily get password by any physically attack such as key-logging attack. 
 
-Last, for the attacks on the server side. Under my assumption, attackers can only read the data saved in database. For password-based scheme, it is a little dangerous for users. If the users' credentials are saved in plaintext, then the attackers will know everythings he wants. Even though it saved after encrypt, there still is in the risk that the key is found by attackers. To sum up, password-based scheme is still not secure enough under this assumption. Comparatively, for my scheme, the data saved in server are the UUID and the public key, which cause no any effect to users' privacy.
+The network communication is insecure, so this password-based scheme will under phishing attack and the Man-In-The-Middle attack. Next, consider an authetication system with my scheme, all attacks to client side is useless, its because these attack can only get signed-nonce or public key, which do not leak any information about the private key. 
+
+To avoid phishing attack and MITM attack, the nonce generated by server is not composed purely by random bits. The nonce is composed by a 128-bits random number following a nother 128-bits server information. Mobile device can retrieve the server information directly by nonce and show it on the screen. Users have to confirm it before the device generate signature. Moreover, there is another advantage of my scheme. Even though there is an attacker get the authority in one authentication process, the attacker will not be able to use this information on another authentication process. Unlike password-based scheme, if a attacker get your password, then he can pretend to be the real user any time.
+
+Last, for the attacks on the server side. Under my assumption, attackers can only read the data saved in database. For password-based scheme, it is a little dangerous for users. If the users' credentials are saved in plaintext, then the attackers will know everythings he wants. Even though it saved after encrypt, it is still in the risk that the key is found by attackers. To sum up, password-based scheme is still not secure enough under this assumption. Futhermore, user's secret is independent from server to server. Any information leaks from a verification server will not decrease the security of other server. Comparatively, for my scheme, the data saved in server are the UUID and the public key, which cause no any effect to users' privacy.
 
 \section{Usability Analysis}
 
