@@ -28,21 +28,28 @@ In comparison to the password-based scheme, my scheme needs two extra steps. But
 
 \begin{figure}
 \centering
-\label{fig:final-flow}
 \includegraphics[scale=0.65]{picture/final-flow.png}
 \caption{Authentication flow with mobile device}
+\label{fig:final-flow}
 \end{figure}
 
-\section{System Components and Data flow}
+\section{Components and Data flow}
 
 There are 5 parts of my scheme: \emph{Mobile device}, \emph{NFC reader application}, \emph{browser}, \emph{srever} and \emph{its database}, as the figure shows. In this section, I'll introduce the envienment I setup for this system.
 
 \subsubsection{Mobile Device and NFC Channel}
 
-For the mobile device, I use Nesus7 with Android OS (version = 4.4) in my experiments. Android os provide a HostApduService for developers to manage the NFC communication. Specifically, Android 4.4 supports emulating cards that are based on the NFC-Forum ISO-DEP specification (based on ISO/IEC 14443-4) and process Application Protocol Data Units (APDUs) as defined in the ISO/IEC 7816-4 specification. The protocol stack shows as fig~\ref{fig:TODO}. When the user taps a device to an NFC reader, the Android system needs to know which HCE service the NFC reader actually wants to talk to. This is where the ISO/IEC 7816-4 specification comes in: it defines a way to select applications, centered around a 16-bytes Application ID (AID).
+For the mobile device, I use Nesus7 with Android OS (version = 4.4) in my experiments. Android os provide a HostApduService for developers to manage the NFC communication. Specifically, Android 4.4 supports emulating cards that are based on the NFC-Forum ISO-DEP specification (based on ISO/IEC 14443-4) and process Application Protocol Data Units (APDUs) as defined in the ISO/IEC 7816-4 specification. The protocol stack shows as fig~\ref{fig:protocol-stack}. When the user taps a device to an NFC reader, the Android system needs to know which HCE service the NFC reader actually wants to talk to. This is where the ISO/IEC 7816-4 specification comes in: it defines a way to select applications, centered around a 16-bytes Application ID (AID).
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.7]{picture/protocol-stack.png}
+\caption{Android's HCE protocol stack}
+\label{fig:protocol-stack}
+\end{figure}
 
 \subsubsection{Browser and NFC Reader}
-In my setup, it doesn't need a specify browser, some common browser such as Google Chrome, FireFox or even IE can support this scheme. The NFC reader I used is ACR122U, looks like fig~\ref{TODO}. The browser connect to NFC reader through Libnfc, a open-source project about developing NFC-related application.
+In my setup, it doesn't need a specify browser, some common browser such as Google Chrome, FireFox or even IE can support this scheme. The NFC reader I used is ACR122U. The browser connect to NFC reader through Libnfc, a open-source project about developing NFC-related application.
 
 \subsubsection{Server and its Database}
 
