@@ -12,8 +12,7 @@ In this chapter, I am going to explain my design more detailed. My scheme is bas
 
 Let us recall the autehentication process about the password-based scheme. As the fig~\ref{fig:password-based-flow} shows, the client give his username and password to server, note that the password must to be encrypted because of the security issue. Then the verificaiton server checks whether it is valid according to its database and return the result to user. Figure~\ref{fig:my-scheme-flow} is the authentication process of my scheme. Client should send a login request first, because the verificaiton server is a passive element. After receive a login request, the server will send a nonce, which is composed by the server information and some random bits, back to the client. The client generate a signature for this nonce and return to server. The server use the public key to check whether the client is valid or not.
 
-In comparison to the password-based scheme, my scheme needs two extra steps. But it is not an issue due to the high data transfer speed of NFC technique. According to this idea, there are some questions should be considered. First, who will generate the signature. Second, 
-
+In comparison to the password-based scheme, my scheme needs two extra steps. But it is not an big issue due to the high data transfer speed of NFC technique. According to this concept, the advantage is that the data communicated between the client and the server do not need to be encrypted. The only \emph{secret} is private key, which is stored in client's storage. The disavantage of my scheme is that users will need to hold a device for creating signature and help them managing their public keys. The next section will offer introduction for each components.
 \begin{figure}
 \centering
 \subfigure[password-based scheme]{
@@ -27,14 +26,27 @@ In comparison to the password-based scheme, my scheme needs two extra steps. But
 \caption{Authentication flow}
 \end{figure}
 
-This is how I used Digital Signature Algorithms in an authentication process. The advantages is that the data communicated between client and server do not need to be encrypted. The only \emph{secret} is private key, which is stored in client's storage. The disavantage of my scheme is that users will need a device to help them creating signature and manage their public keys. Therefore, the use of mobile device is the core of this scheme, bring us a high usability. The user flow become fig~\ref{final-flow} with the help of mobile device.
-
 \begin{figure}
 \centering
 \label{fig:final-flow}
 \includegraphics[scale=0.65]{picture/final-flow.png}
 \caption{Authentication flow with mobile device}
 \end{figure}
+
+\section{System Components and Data flow}
+
+There are 5 parts of my scheme: \emph{Mobile device}, \emph{NFC reader application}, \emph{browser}, \emph{srever} and \emph{its database}, as the figure shows. In this section, I'll introduce the envienment I setup for this system.
+
+\subsubsection{Mobile Device and NFC Channel}
+
+For the mobile device, I use Nesus7 with Android OS (version = 4.4) in my experiments. Android os provide a HostApduService for developers to manage the NFC communication. Specifically, Android 4.4 supports emulating cards that are based on the NFC-Forum ISO-DEP specification (based on ISO/IEC 14443-4) and process Application Protocol Data Units (APDUs) as defined in the ISO/IEC 7816-4 specification. The protocol stack shows as fig~\ref{fig:TODO}. When the user taps a device to an NFC reader, the Android system needs to know which HCE service the NFC reader actually wants to talk to. This is where the ISO/IEC 7816-4 specification comes in: it defines a way to select applications, centered around a 16-bytes Application ID (AID).
+
+\subsubsection{Browser and NFC Reader}
+In my setup, it doesn't need a specify browser, some common browser such as Google Chrome, FireFox or even IE can support this scheme. The NFC reader I used is ACR122U, looks like fig~\ref{TODO}. The browser connect to NFC reader through Libnfc, a open-source project about developing NFC-related application.
+
+\subsubsection{Server and its Database}
+
+I use flask, a python framework for web application, for building an verification server in order to proof my concept. I choose to use SQL database, which means my scheme are compatable to password-based scheme. I use HTTP as the transmission protocol. The reason why I don't use HTTP is because of my threat model assumption. I assume that the client side (browser and nfc reader) is unsecure, so even though I adopt HTTPS, the certificate is still untrusted. Thus, I select an unsecure transmission protocol to emphasize that the client-side is untrusted.
 
 \section{User Flow}
 
