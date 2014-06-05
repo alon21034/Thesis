@@ -26,15 +26,15 @@ Because this mechanism needs an extra hardware in devices, most of Android appli
 
 \section{Near Field Communication}
 
-Near field communication (NFC) is a set of standards for smartphones and similar devices to establish radio communication with each other by touching them together or bringing them into proximity, usually no more than a few inches. Some people may be wondering what is the difference between NFC and Bluetooth. In briefly, NFC technology consumes little power when compared to standard Bluetooth technology. The close proximity that devices connected using NFC must be to each other actually proves useful in crowded locations to prevent interference caused when other devices are present and trying to communicate. 
+Near field communication (NFC)\cite{nfc-wiki} is a set of standards for smartphones and similar devices to establish radio communication with each other by touching them together or bringing them into proximity, usually no more than a few inches. Some people may be wondering what is the difference between NFC and Bluetooth. In briefly, NFC technology consumes little power when compared to standard Bluetooth technology\cite{nfc-ble-1}\cite{nfc-ble-2}. The close proximity that devices connected using NFC must be to each other actually proves useful in crowded locations to prevent interference caused when other devices are present and trying to communicate. 
 
 \section{OpenID}
 
-OpenID (OID) is an open standard and decentralized protocol by the non-profit OpenID Foundation that allows users to be authenticated by certain co-operating sites (known as Relying Parties or RP) using a third party service. This eliminates the need for webmasters to provide their own ad hoc systems and allowing users to consolidate their digital identities.[1] In other words, users can log into multiple unrelated websites without having to register with their information over and over again. Fig~\ref{fig:openid-flow} is the overview of OpenID protocol and the user flow.
+OpenID (OID)\cite{openid} is an open standard and decentralized protocol by the non-profit OpenID Foundation that allows users to be authenticated by certain co-operating sites (known as Relying Parties or RP) using a third party service. This eliminates the need for webmasters to provide their own ad hoc systems and allowing users to consolidate their digital identities. In other words, users can log into multiple unrelated websites without having to register with their information over and over again. Fig~\ref{fig:openid-flow} is the overview of OpenID protocol and the user flow.
 \begin{figure}
 \centering
 \includegraphics[scale=0.6]{picture/openid-flow.png}
-\caption{OpenID overview}
+\caption{OpenID overview\cite{openid-flow}}
 \label{fig:openid-flow}
 \end{figure}
 
@@ -46,7 +46,7 @@ Since researchers have studied authentication system for years, there are variou
 
 \subsubsection{SecurID}
 
-SecurID, now known as RSA SecurID, is a mechanism developed by RSA (the Security Division of EMC) for performing two-factor authentication for a user to a network resource. The following paragragh will describe how it works simply.
+SecurID, now known as RSA SecurID\cite{rsa-securid}, is a mechanism developed by RSA (the Security Division of EMC) for performing two-factor authentication for a user to a network resource. The following paragragh will describe how it works simply.
 
 Each device stored a defferent secret \emph{seed}, and the back-end server also know this seed. In every 60 seconds, SecurID will generate an 6-digit authentication code according to its seed, and display on the screen. If a user authenticating to a network service, he have to enter both a personal identificaiton number and the 6-digit \emph{code at that moment}. The server, which also has a real-time clock and a database of valid tokens with the associated seed records, authenticates a user by computing what number the token is supposed to be showing at that moment in time and checking this against what the user entered.
 
@@ -54,7 +54,7 @@ However, in March 2011 attackers compromised RSA's back-end database of seeds, w
 
 \subsubsection{YubiKey}
 
-The YubiKey is another authentication hardware token, which shaped like a USB flash drive. It connects to a USB port and identifies itself as a USB keyboard, which allows it to be compatiable to most of computers or laptops with system's native driver. The basic finction of the YubiKey is to generate \emph{One-Time Passwords}. 
+The YubiKey\cite{yubikey} is another authentication hardware token, which shaped like a USB flash drive. It connects to a USB port and identifies itself as a USB keyboard, which allows it to be compatiable to most of computers or laptops with system's native driver. The basic finction of the YubiKey is to generate \emph{One-Time Passwords}. 
 
 When users want to authenticating to a network service by YubiKey, after insert YubiKey into the USB port, users have to touch the YubiKey's OTP generation button. The YubiKey will help users typing a string of printable characters-the concatenation of a fixed \emph{identity string} (replacing the username) and a one-time password (replacingthe password). Then the verify server will check whether the OTP is valid or not, and check the timestamp to resist to the relay-attak.
 
@@ -62,13 +62,13 @@ When users want to authenticating to a network service by YubiKey, after insert 
 
 \subsubsection{Google 2-step}
 
-Two-step verification is a process involving two stages to verify the identity of an entity trying to access services in a computer or in a network. Google was one of the first Internet companies to introduce a two-step verification process. The first authentication step is just like the original scheme, log in with the username and password. The second step required a mobile phone with SMS service. Users must register his phone number to Google. When a user want to start the 2-step authentication, a text message, which including a one-time code, will send to user's mobile phone via SMS. The user have to enter this code on the website in 30 seconds, or this code will be invalid because of timeout.
+Two-step verification is a process involving two stages to verify the identity of an entity trying to access services in a computer or in a network. Google was one of the first Internet companies to introduce a two-step verification process\cite{google-2-step}. The first authentication step is just like the original scheme, log in with the username and password. The second step required a mobile phone with SMS service. Users must register his phone number to Google. When a user want to start the 2-step authentication, a text message, which including a one-time code, will send to user's mobile phone via SMS. The user have to enter this code on the website in 30 seconds, or this code will be invalid because of timeout.
 
 \subsection{Smart-card-based scheme}
 
 \subsubsection{Song's Smart-card-based Scheme}
 
-In order to address some of the scurity and management problems that occur in traditional password-based authentication protocols, researchin recent decadrs has focused on smart card based password authentication. In 2012, Ronggong Song proposed a new design of smart card based authentication protoccol. In his research, he analyzed the previous propotol proposed by Xu-Zhu-Feng and demonstrated a simple improvement. Futhermore, he designed a new strong smart card based authentication protocol. The following fig~\ref{fig:song-smard-card-scheme} shows that how his new scheme works.
+In order to address some of the scurity and management problems that occur in traditional password-based authentication protocols, researchin recent decadrs has focused on smart card based password authentication. In 2012, Ronggong Song proposed a new design of smart card based authentication protoccol\cite{smart-card}. In his research, he analyzed the previous propotol proposed by Xu-Zhu-Feng and demonstrated a simple improvement. Futhermore, he designed a new strong smart card based authentication protocol. The following fig~\ref{fig:song-smard-card-scheme} shows that how his new scheme works.
 
 \begin{figure}
 \centering
