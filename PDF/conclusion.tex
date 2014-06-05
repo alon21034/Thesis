@@ -6,7 +6,11 @@
 
 \chapter{Compare to Other Schemes}
 
-In this section, I'll compare my scheme to other related schemes introduced in chapter 2. For the comparison of security, because the threat model is different in different scheme. Therefore, I can only select some general criteria to do a brief analysis. For the estimation in usability, I take the original password-based scheme as a standard. When the estimation in one criteria of a scheme is better than password-based scheme, then I'll note it a + sign, or note it as - on the contrary. If it is as good as password-scheme in my opinion, I'll note is as =. For the comparison of deployment ability, the estimating of these properties are either yes or no, so I use O or X to express.
+In this section, I'll compare my scheme to other related schemes introduced in section~\ref{sec:related-work}. For the comparison of security, because the threat model is different in different scheme. Therefore, I can only select some general criteria to do a brief analysis. 
+
+For the estimation in usability, I take the original password-based scheme as a standard. When the estimation in one criteria of a scheme is better than password-based scheme, then I'll note it a + sign, or note it as - on the contrary. If it is as good as password-scheme in my opinion, I'll note is as =. 
+
+For the comparison of deployment ability, the estimating of these properties are either yes or no, so I use O or X to express.
 
 \begin{table}[h]
 \begin{tabular}{|c|c|c|c|c|c|c|}
@@ -51,9 +55,9 @@ Browser-compatible & O   & O         & O       & O       & X             & O    
 
 \chapter{Conclusion}
 
-In my study, I propose a user-friendly authentication solution. With the analysis comparison result in the previous chapter, my scheme can resist to lots of general attack methods. In chapter 4, I also claimed that it is secure enough under a reasonable threat model. 
+In my study, I propose a user-friendly authentication solution. With the analysis comparison result in the previous chapter, my scheme can resist to lots of general attack methods. In chapter~\ref{cha:discussion}, I also claimed that it is secure enough under a reasonable threat model. 
 
-For the usability, the only disadvantages of my scheme is as same as others device-based or smart-card-based schemes. Users need to bring a token or device with them, and it is hard to recovery if the device got lost. In consideration of the recovery-from-loss property, there are some approaches can solve this problem. For example, users can register their e-mail address to verification server, and use OTP through e-mail to reset their UUID and private key.
+For the usability, the only disadvantage of my scheme is as same as others device-based or smart-card-based schemes. Users need to bring a token or device with them, and it is hard to recovery if the device got lost. In consideration of the recovery-from-loss property, there are some approaches can solve this problem. For example, users can register their e-mail address to verification server, and use OTP through e-mail to reset their UUID and private key.
 
 For the deployment ability, though it didn't perform well in both accessibility and user-cost. However, in my opinion, server-compatible and browser-compatible are much more important. Thus, we still can say that my scheme has a good deployment ability.
 

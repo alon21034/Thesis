@@ -5,8 +5,9 @@
 %---------------------------------------------
 
 \chapter{Discussion}
+\label{cha:discussion}
 
-In this chapter, I'll evaluate my new design's performance in security, deployment ability and usability. Before the security analysis, I determined the threat model\cite{threat-model}, including the secure object, trust boundary and some possible threats. I'll show that my new scheme is more secure than password-based scheme under a specify assumption.
+In this chapter, I'll evaluate my new design's performance in security, deployment ability and usability. Before the security analysis, I determined the \emph{threat model}\cite{threat-model}, including the secure objects, trust boundaries and some possible threats. I'll show that my new scheme is more secure than password-based scheme under a specify assumption.
 
 In the section of usability analysis and deployment ability analysis, I'll introduce some criteria in order to measure a system's performance. Then I'll show and tell that my design is a user-friendly authentication solution for both users and developers.
 
@@ -58,33 +59,35 @@ In this paragraph, I'll discuss the possible threats and weaknesses that could a
 
 \subsubsection{Attacks on Conponent}
 
-First, due to the mobile device is secure, so I will not discuss any attacks on mobile device. Then we considered the attacks on the client side (browser and reader application). For password-based scheme, malicious people can easily get password by any physically attack such as key-logging attack. For attacks on the server side, under my assumption, attackers can only read the data saved in database. In password-based scheme, it is a little dangerous for users. If the users' credentials are saved in plaintext, then the attackers will know everythings he wants. Even though it saved after encrypt, it is still in the risk that the key is found by attackers. Furthermore, my scheme can resist of information leakage from other verifiers because of the adoption of asymmetric key cryptography.
+First, due to the mobile device is secure, so I will not discuss any attacks on mobile device. Then we considered the attacks on the client side (browser and reader application). For password-based scheme, malicious people can easily get password by any physically attack such as key-logging attack. However, in my scheme, I didn't any physical effort so the attacks on client are useless.
+
+For attacks on the server side, under my assumption, attackers can only read the data saved in database. In password-based scheme, it is a little dangerous for users. If the users' credentials are saved in plaintext, then the attackers will know everythings he wants. Even though it saved after encrypt, it is still in the risk that the key is found by attackers. Comparatively, for my scheme, the data saved in server are the UUID and the public key, which cause no any effect to users' privacy. Furthermore, my scheme can resist of information leakage from other verifiers because of the adoption of asymmetric key cryptography.
 
 \subsubsection{Attacks on Connection}
 
-The internet connection is based on TLS. Thus, if the certificate saved in client is valid, the packets cannot be modified or be snooped. Both password-based scheme and my design are secure. For the NFC channel, it is a hard-link, that is, user will know that their device is communicating with who directly. In addition, the distance and the lifetime of a NFC communicatio channel are short. These reasons make it is difficult to apply replay-attack on NFC connection. 
+The internet connection is based on TLS. Thus, if the certificate saved in client is valid, the packets cannot be modified or be snooped. Both password-based scheme and my design are secure. For the NFC channel, it is a hard-link, that is, user will know that their device is communicating with who directly. In addition, the distance and the lifetime of a NFC communication channel are short. These reasons make it difficult to apply replay-attack on NFC connection. 
 
 \subsubsection{Attacks on Protocol}
 
-For password-based scheme, it is difficult to prevent from guessing attack, which is useless in my scheme. Furthermore, user's secret is independent from server to server. Any information leaks from a verification server will not decrease the security of other server. Comparatively, for my scheme, the data saved in server are the UUID and the public key, which cause no any effect to users' privacy. Moreover, there is another advantage of my scheme. Even though there is an attacker get the authority in one authentication process, the attacker will not be able to use this information on another authentication process. Unlike password-based scheme, if a attacker get your password, then he can pretend to be the real user any time.
+For password-based scheme, it is difficult to prevent from guessing attack, which is useless in my scheme. Furthermore, user's secret is independent from server to server. Any information leaks from a verification server will not decrease the security of other servers. Moreover, there is another advantage of my scheme. Even though there is an attacker get the authority in one authentication process, the attacker will not be able to use this information on another authentication process. Unlike password-based scheme, if a attacker get your password, then he can pretend to be the real user any time.
 
 \subsubsection{Criteria}
 
-In order to compare the security of different solutions, we have to build some criteria. In this section, I enumerate some common attack approaches to authentication system. For my scheme, it can resist to physical observation obviously. The private keys do not have any information of user's personality, so this scheme resist to targeted impersonation attack. Guessing attack can be avoided because there is only one chance to send signed-nonce to the server. Internal observation can be avoided because of we don't need a secure client in our threat model assumption. Every private key is generated randomly, so they are all independent. The nonce consists of server information and user have to confirm it, so the scheme can resist to phishing attack with a careful user.
-
+In order to compare the security of different solutions, we have to build some criteria. In this section, I enumerate some common attack approaches to authentication system. 
 \begin{enumerate}
-\item[.] resist to physical observation
-\item[.] tageted impersonation
+\item[*] resist to physical observation
+\item[*] targeted impersonation
 \\This means that an attacker cannot impersonate a user after observing them authenticate one or more times.
-\item[.] guessing attack
+\item[*] guessing attack
 \\This means that an attacker cannot get the secret by guessing either password, private key or random seed and so on.
-\item[.] internal observation
-\\An attacker cannot impersonate a user by intercepting the user's input from inside the user's device. Including the plaintext communicated through internet channel, we assume the attacker can break TLS.
-\item[.] leaks from other verifiers
+\item[*] internal observation
+\\An attacker cannot impersonate a user by intercepting the user's input from inside the user's device. Including the plaintext communicated through internet channel, we assume that the attacker can break TLS.
+\item[*] leaks from other verifiers
 \\Nothing that a verifier could possibly leak can help an attacker impersonate the user to another verifiers.
-\item[.] resist to phishing attack
-
+\item[*] resist to phishing attack
 \end{enumerate}
+
+For my scheme, it can resist to physical observation obviously. The private keys do not have any information of user's personality, so this scheme resist to targeted impersonation attack. Guessing attack can be avoided because there is only one chance to send signed-nonce to the server. Internal observation can be avoided because of we don't need a secure client in our threat model assumption. Every private key is generated randomly, so they are all independent. The nonce consists of server information and user have to confirm it, so the scheme can resist to phishing attack.
 
 \section{Usability Analysis}
 
@@ -124,15 +127,15 @@ Users can regain the authentication ability if they lost their devices or if the
 
 \subsubsection{Analysis}
 
-User needs to set a PIN code and remember it in my design, so this scheme is better than password-based scheme from the viewpoint of memory-effort. Second, consider the scalable ability for user, assume that a user want to register 100 account with password-based scheme, he'll need to remember all the 100 pairs of username and password. In my scheme, the mobile can help user to do that. Thus, the scalable ability of my scheme is better.
+User only needs to set a PIN code and remember it in my design, so this scheme is better than password-based scheme from the viewpoint of memory-effort. Second, consider the scalable ability for user, assume that a user want to register 100 account with password-based scheme, he'll need to remember all the 100 pairs of username and password. In my scheme, the mobile can help user to do that. Thus, the scalable ability of my scheme is better.
 
-The physical effort of password-based scheme is enter username and password. Contrast to my scheme, user only has to swipe their mobile device to the NFC reader. However, some browser can help users to remember their username and password. Thus, in my opinion, these two schemes should get same credit on these criteria. About the next two criteria, because there is no any evident issues in efficiency or correctness. These two schemes should get same credit, too.
+The physical effort of password-based scheme is enter username and password. Contrast to my scheme, user only has to swipe their mobile device to the NFC reader once. However, some browser can help users to remember their username and password. Thus, in my opinion, these two schemes should get same credit on these criteria. About the next two criteria, because there is no any evident issues in efficiency or correctness. These two schemes should get same credit, too.
 
-The last one is easy-recovery-from-loss, there are lots of approach can recovery the password if user forget it. Such as register a backup email address, OTP via SMS and so on. In my scheme, it is obvious that people cannot easily recovery his account if he lose his mobile device. To be honestly, all token-based schemes have poor performance in these criteria.
+The last one is easy-recovery-from-loss, there are lots of approach can recovery the password if user forget it. Such as register a backup email address, OTP via SMS and so on. In my scheme, it is obvious that people cannot easily recovery his account if he lose his mobile device. To be honestly, all token-based schemes have poor performance in this properity.
 
 \section{Deployment Ability Analysis}
 
-The deployment ability is also an important thing that needs to be considered, especially in designing an authentication system. A system with high usability means it is friendly to users; a system with high deployment ability means it is friendly to the system provider or, more precise, the developers. The following paragraphs state the properties I used to estimate a system's deployment ability.
+The deployment ability is also an important thing that needs to be considered, especially in designing an authentication system. A system with high usability means it is friendly to users; a system with high deployment ability means it is friendly to the system provider. The following paragraphs state the properties I used to estimate a system's deployment ability.
 
 \subsubsection{Criteria}
 
@@ -156,8 +159,8 @@ Users don't have to change anything to support this scheme.
 
 For accessible ability, users will be asked to enter PIN code on mobile device, swipe it to NFC reader and users need to confirm the correctness of server info to ensure the security. Therefore, in my opinion, my scheme doesn't have a good performance of accessible ability.
 
-The total cost of my scheme is the mobile device. The verification server does not need any other equipment. However, because of the high popularity of mobile device, I think it has a not bad performance of user-cost.
+The total cost of my scheme is the mobile device. The verification server does not need any other equipment. However, because of the high popularity of mobile device, I think it doesn't has a bad performance of user-cost.
 
-It is obvious that my scheme is server-compatible. We can save UUID and public key with text-based format easily. For browser-compatible, users will need a extra reader application rather than password-based scheme, but they won't need to change too many things to support this scheme. Thus I think my scheme is server-compatible and a little browser-compatible. 
+It is obvious that my scheme is server-compatible. We can save UUID and public key with text-based format easily. For browser-compatible, users will need a extra reader application than password-based scheme, but they won't need to change too many things to support this scheme. Thus I think my scheme is server-compatible and a little browser-compatible. 
 
 \end{CJK}
