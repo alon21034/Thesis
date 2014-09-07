@@ -22,13 +22,13 @@ Digital signatures can be used to authenticate the source of messages. When owne
 
 Near Field Communication (NFC)\cite{nfc-wiki} is a set of standards for smartphones and similar devices to establish radio communication with each other by touching them together or bringing them into proximity, usually no more than a few inches.
 
-Some people may be wondering what is the difference between NFC and Bluetooth. In briefly, NFC technology consumes little power when compared to standard Bluetooth technology\cite{nfc-ble-1}\cite{nfc-ble-2}. The close proximity that devices connected using NFC must be to each other actually proves useful in crowded locations to prevent interference caused when other devices are present and trying to communicate. 
+Some people may be wondering what is the difference between NFC and Bluetooth. In brief, NFC technology consumes little power compared to standard Bluetooth technology\cite{nfc-ble-1}\cite{nfc-ble-2}. Devices connected using NFC must be close to each other. That is also useful in crowded locations because it prevents interference caused when other devices are present and trying to communicate.
 
 \section{Android HCE Feature}
 
-Many Android devices, which offer NFC functionality, also support card emulation feature. In most cases, this feature is achieved by a separate chip, called \emph{secure element} (SE). The Android system only provides an interface. Therefore, no Android application can involve in the transaction between secure element and the reader. After the transaction complete, an application can query the secure element directly to get transaction status and notify users. This is why the original NFC card emulation functionality also called hardware card emulation.
+Many Android devices, which offer NFC functionality, also support card emulation feature. In most cases, this feature is achieved by a separate chip called \emph{secure element} (SE). The Android system only provides an interface. Therefore, no Android application can involve in the transaction between secure element and the reader. After the transaction is completed, an application can query the secure element directly to get transaction status and notify users. This is why the original NFC card emulation functionality is also called hardware card emulation.
 
-Because this mechanism needs an extra hardware in devices, most of Android application developers cannot take advantages of card emulation feature. To solve this, Android 4.4 provides an additional method of card emulation, which is not involved with secure element, called \emph{host-base card emulation}. This method allows Android application can communicate with NFC reader directly, and no need the help of extra hardware. Due to this feature, lots of customized NFC application appear, especially for payment, such as Visa and MasterCard\cite{nfc-visa}.
+Because this mechanism needs an extra hardware in devices, most of Android application developers cannot take advantages of card emulation feature. To solve this, Android 4.4 provides an additional method of card emulation, which is not involved with secure element, called \emph{host-based card emulation}. This method allows Android application can communicate with NFC reader directly, and no need the help of extra hardware. Due to this feature, lots of customized NFC application appear, especially for payment, such as Visa and MasterCard\cite{nfc-visa}.
 
 \begin{comment}
 \section{OpenID}
@@ -48,31 +48,31 @@ This eliminates the need for webmasters to provide their own ad hoc systems and 
 \section{Existing Solutions}
 \label{sec:related-work}
 
-Since researchers have studied authentication system for years, there are several solutions now. I selected four kinds of solution, which is related to hardware-tokens, mobile devices and smart cards. These features are similar to the scheme I proposed, and I'll describe them briefly in the following section.
+Since researchers have studied authentication system for years, there are several solutions now. I selected four kinds of solutions, which are related to hardware-tokens, mobile devices and smart cards. These features are similar to the scheme I proposed, and I'll describe them briefly in the following section.
 
 \subsection{Token-based scheme}
 
 \subsubsection{SecurID}
 
-SecurID, now known as RSA SecurID\cite{rsa-securid}, is a mechanism developed by RSA (the Security Division of EMC) for performing two-factor authentication for a user to a network resource. The following paragraghs will describe how it works simply.
+SecurID, now known as RSA SecurID\cite{rsa-securid}, is a mechanism developed by RSA (the Security Division of EMC) for performing two-factor authentication for a user to a network resource. The following paragraghs will simply describe how it works.
 
-Each device stored a defferent secret \emph{seed}, and the back-end server also know this seed. In every 60 seconds, SecurID will generate an 6-digit authentication code according to its seed, and display on the screen. If a user authenticating to a network service, he has to enter both a personal identification number and the 6-digit code \emph{at that moment}. The server, which also has a real-time clock and a database of valid tokens with the associated seed records, authenticates a user by computing what number the token is supposed to be showing at that moment in time and checking this against what the user entered.
+Each device stores a defferent secret \emph{seed}, and the back-end server also know this seed. In every 60 seconds, SecurID will generate an 6-digit authentication code according to its seed, and display on the screen. If users authenticate to a network service, they have to enter both a personal identification number and the 6-digit code \emph{at that moment}. The server, which also has a real-time clock and a database of valid tokens with the associated seed records, authenticates a user by computing what number the token is supposed to be showing at that moment in time and checking this against what the user entered.
 
 However, in March 2011 attackers compromised RSA's back-end database of seeds\cite{rsa-hack}, which allowed them to predict the authentication codes generated by any token at any time. This attack forces RSA Security to replace almost every one of the 40 million SecurID tokens in use.
 
 \subsubsection{YubiKey}
 
-The YubiKey\cite{yubikey} is another authentication hardware token, which shaped like a USB flash drive. It connects to a USB port and identifies itself as a USB keyboard, which allows it to be compatible to most of computers or laptops with system's native driver. The basic function of the YubiKey is to generate \emph{One-Time Passwords}. 
+The YubiKey\cite{yubikey} is another authentication hardware token, which is shaped like a USB flash drive. It connects to a USB port and identifies itself as a USB keyboard, which allows it to be compatible to most of computers or laptops with system's native driver. The basic function of the YubiKey is to generate \emph{One-Time Passwords}. 
 
-When users want to authenticating to a network service by YubiKey, after insert YubiKey into the USB port, users have to touch the YubiKey's OTP generation button. The YubiKey will help users typing a string of printable characters-the concatenation of a fixed \emph{identity string} (to replace the username) and a one-time password (to replace the password). Then the verify server will check whether the OTP is valid or not, and check the timestamp to resist to the relay-attack.
+When users want to authenticate to a network service by YubiKey, after insert YubiKey into the USB port, users have to touch the YubiKey's OTP generation button. The YubiKey will help users typing a string of printable characters-the concatenation of a fixed \emph{identity string} (to replace the username) and a one-time password (to replace the password). Then the verification server will check whether the OTP is valid or not, and check the timestamp to resist to the relay-attack.
 
 \subsection{Mobile-device-based scheme}
 
 \subsubsection{Google 2-step}
 
-Two-step verification is a process involving two stages to verify the identity of an entity trying to access services in a computer or in a network. Google was one of the first Internet companies to introduce a two-step verification process\cite{google-2-step}. 
+Two-step verification is a process involving two stages to verify the identity of an entity trying to access services in computers or a network. Google was one of the first Internet companies to introduce a two-step verification process\cite{google-2-step}. 
 
-The first authentication step is just like the original scheme, log in with the username and password. The second step required a mobile phone with SMS service. Users must register his phone number to Google. When a user want to start the 2-step authentication, a text message, which including a one-time code, will send to user's mobile phone via SMS. The user have to enter this code on the website in 30 seconds, or this code will be invalid because of timeout.
+The first authentication step is just like the original scheme, login with the username and password. The second step requires a mobile phone with SMS service. Users must register his phone number to Google. When a user want to start the 2-step authentication, a text message, which including a one-time code, will send to user's mobile phone via SMS. The user have to enter this code on the website in 30 seconds, or this code will be invalid because of timeout.
 
 \subsection{Smart-card-based scheme}
 
