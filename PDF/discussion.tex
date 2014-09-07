@@ -19,7 +19,7 @@ The usability analysis and deployment ability analysis sections will introduce s
 
 \begin{enumerate}
 \item[*] Protect user's private credentials.
-\item[*] Prevent a malicious attacker deceive verifier as a valid user.
+\item[*] Prevent verifier from being deceived by a malicious attacker.
 \\
 \item[*] The authorized actions after a successful authentication should be secure as well.
 \end{enumerate}
@@ -28,7 +28,7 @@ For an authentication system, the most important goal is to protect user's priva
 
 \subsubsection{Trust Boundary}
 
-There are five components in this scheme, and four possible channels for transfering data, as the fig~\ref{fig:compose-element} shows. Because the \emph{mobile device} is a private accessories, we can assumed that the mobile device is a trusted device. It is an unrooted Android phone with a secure data storage. No one can dump the memory out or changed any value which is saved in storage.
+There are five components in this scheme, and four possible channels for transfering data, as the fig~\ref{fig:compose-element} shows. Because the \emph{mobile device} is a private accessories, we can assumed that the mobile device is a trusted device. It is an unrooted Android phone with a secure data storage. No one can dump the memory out or modify any value which is saved in storage.
 
 \begin{figure}
 \centering
@@ -41,9 +41,9 @@ The \emph{browser} and the \emph{NFC reader application} are usually running on 
 
 The communication channels between client and either mobile device or server is secure enough with the help of Transport Layer Security(TLS) or Secure Sockets Layer(SSL). 
 
-The server is secure enough, malicious attackers can only read the data saved in the database but cannot modified them.
+The server is secure enough so that malicious attackers can only read the data saved in the database but cannot modified them.
 
-Finally, in order to analysis the threats, we have to assume that the registration process is secure. 
+Finally, in order to analyze the threats, we have to assume that the registration process is secure. 
 
 To sum up, my assumption in trust boundary can be arranged as following:
 \begin{enumerate}
@@ -61,19 +61,19 @@ To sum up, my assumption in trust boundary can be arranged as following:
 
 This paragraph is going to discuss the possible threats which could affect this system under the assumptions described above. Furthermore, a comparison between this scheme and the original password-based scheme will be given, in order to show the improvement of this new design.
 
-\subsubsection{Attacks on Conponent}
+\subsubsection{Attacks on Component}
 
-First, due to the mobile device is secure under the assumpsion, it is no need to discuss any attack on the mobile device. Then we considered the attacks on the client side (browser and reader application). For password-based scheme, malicious people can easily get password by any physically attack such as key-logging attack. However, in my scheme, I didn't any physical effort so the attacks on client are useless.
+First, due to the mobile device is secure under the assumpsion, it is no need to discuss any attack on the mobile device. Then we considered the attacks on the client side (browser and reader application). For password-based scheme, malicious people can easily get password by any physically attack such as key-logging attack. However, in my scheme, it dosen't need to do any physical effort so the attacks on client are useless.
 
-For attacks on the server side, under my assumption, attackers can only read the data saved in database. In password-based scheme, it is a little dangerous for users. If the users' credentials are saved in plaintext, then the attackers will know everythings he wants. Even though it saved after encrypt, it is still in the risk that the key is found by attackers. Comparatively, for my scheme, the data saved in server are the UUID and the public key, which cause no any effect to users' privacy. Furthermore, my scheme can resist of information leakage from other verifiers because of the adoption of asymmetric key cryptography.
+For attacks on the server side, under my assumption, attackers can only read the data saved in the database. With password-based scheme, it is a little dangerous for users if the users' credentials are saved in plaintext. The attackers will be able to know everythings they want. Even though these private data are saved after encrypt, they are still under the risk that the key is found by attackers. Comparatively, for this new scheme, the data saved in server are the UUID and the public key, which cause no any effect to users' privacy. Furthermore, this scheme can resist of information leakage from other verifiers because of the adoption of asymmetric key cryptography.
 
 \subsubsection{Attacks on Connection}
 
-The internet connection is based on TLS. Thus, if the certificate saved in client is valid, the packets cannot be modified or be snooped. Both password-based scheme and my design are secure. For the NFC channel, it is a hard-link, that is, user will know that their device is communicating with who directly. In addition, the distance and the lifetime of a NFC communication channel are short. These reasons make it difficult to apply replay-attack on NFC connection. 
+The internet connection is based on TLS. Thus, if the certificate saved in client is valid, the packets cannot be modified or be snooped. Both password-based scheme and this new design are secure. For the NFC channel, it is a hard-link, that is, user will know who their device is communicating with directly. In addition, the distance and the lifetime of a NFC communication channel are short. These reasons make it difficult to apply the replay-attack on NFC connection. 
 
 \subsubsection{Attacks on Protocol}
 
-For password-based scheme, it is difficult to prevent from guessing attack, which is useless in my scheme. Furthermore, user's secret is independent from server to server. Any information leaks from a verification server will not decrease the security of other servers. Moreover, there is another advantage of my scheme. Even though there is an attacker get the authority in one authentication process, the attacker will not be able to use this information on another authentication process. Unlike password-based scheme, if a attacker get your password, then he can pretend to be the real user any time.
+For password-based scheme, it is difficult to prevent from guessing attack, which is useless in the new scheme. Furthermore, user's secret is independent from server to server. Any information leaks from a verification server will not decrease the security of other servers. Moreover, there is another advantage of my scheme. Even though there is an attacker get the authority in one authentication process, the attacker will not be able to use this information on another authentication process. Unlike password-based scheme, if an attacker gets your password, then he can pretend to be the real user any time.
 
 \subsubsection{Criteria}
 
@@ -91,7 +91,7 @@ In order to compare the security of different solutions, we have to build some c
 \item[*] resist to phishing attack
 \end{enumerate}
 
-For this scheme, it can resist to physical observation obviously. It can also resist to targeted impersonation attack, because the private keys do not have any information of user's personality. Guessing attack can be avoided because server will generate nonce randomly in every login process. There is only one chance to send signed-nonce to the server. Internal observation can be avoided because of we don't need a secure client in our threat model assumption. Every private key is generated randomly, so they are all independent. The nonce consists of server information and user have to confirm it, so the scheme can resist to phishing attack.
+For this scheme, it can resist to physical observation obviously. It can also resist to targeted impersonation attack, because the private keys do not have any information of user's personality. Guessing attack can be avoided because server will generate nonce randomly in every login process. There is only one chance to send signed-nonce to the server. Internal observation can be avoided because we don't need a secure client in our threat model assumption. Every private key is generated randomly, so they are all independent. The nonce consists of server information and user have to confirm it, so the scheme can resist to phishing attack.
 
 \section{Usability Analysis}
 
